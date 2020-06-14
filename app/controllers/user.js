@@ -1,4 +1,14 @@
+const fs = require('fs');
+var cloudinary = require('cloudinary').v2;
+require("dotenv").config();
+
 const User = require('../models/user')
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 exports.updateProfile = (req, res) => {
 
@@ -45,9 +55,9 @@ exports.updateProfilePicture = (req, res) => {
         else {
             console.log("Result: ", result);
             // update profile pic and return response
-            const profilePic = new User({
-                picture: result.secure_url,
-            });
+            const profilePic = {
+                profilePicture: result.secure_url,
+            };
 
             User.findByIdAndUpdate(req.params.userId, profilePic, {new: true, useFindAndModify: false}, function(err, user) {
                 if (err) {

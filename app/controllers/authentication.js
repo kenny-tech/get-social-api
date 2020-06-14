@@ -41,6 +41,7 @@ exports.signup = function(req, res, next) {
         email: email,
         password: password,
         name: name,
+        profilePicture: ''
       });
 
       user.save(function(err) {
@@ -49,7 +50,12 @@ exports.signup = function(req, res, next) {
         // Respond to request indicating the user was created
         res.status(200).send({ 
           success: true,
-          data: user,
+          data: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            profilePicture: user.profilePicture,
+          },
           message: 'Registration successful',
         });
       });
@@ -100,6 +106,7 @@ exports.signin = async function (req, res, next) {
           id: user.id,
           email: user.email,
           name: user.name,
+          profilePicture: user.profilePicture,
           token: tokenForUser(user) 
         },
         message: 'Login successful',
