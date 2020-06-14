@@ -13,16 +13,7 @@ cloudinary.config({
 
 // Create a photo
 exports.create = (req, res) => {
-
-    // validate request
-    if(!req.body.picture) {
-        return res.status(400).send({
-            message: "Picture cannot be empty"
-        })
-    }
-
-    const userId = req.body.userId;
-
+    
     const imageName = Date.now()+'.png';
 
     // to declare some path to store your converted image
