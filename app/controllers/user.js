@@ -78,3 +78,26 @@ exports.updateProfilePicture = (req, res) => {
     });
 }
 
+exports.getUser = (req, res) => {
+    User.findById(req.params.userId)
+    .then(user => {
+        if(!user) {
+            res.status(422).send({ 
+                success: false,
+                data: null,
+                message: 'User with User ID '+ req.params.userId +' not found',
+            });
+        } else {
+            res.status(200).send({ 
+                success: true,
+                data: {
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                    profilePicture: user.profilePicture 
+                },
+                message: 'User found',
+            });
+        }
+    })
+}

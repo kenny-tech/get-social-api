@@ -28,4 +28,6 @@ module.exports = (app) => {
 
     app.put('/updateProfilePicture/:userId', user.updateProfilePicture);
 
+    app.get('/getUser/:userId', user.getUser);
+
 };
