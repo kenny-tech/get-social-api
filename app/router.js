@@ -19,6 +19,9 @@ module.exports = (app) => {
      // Retrieve a single photo with photoId
      app.get('/photos/:photoId', photos.findOne); 
 
+     // Count user photos
+     app.get('/countUserPhotos/:userId', photos.countUserPhotos); 
+
     // app.post('/signin', requireSignin, Authentication.signin);
     app.post('/signin', Authentication.signin);
 
