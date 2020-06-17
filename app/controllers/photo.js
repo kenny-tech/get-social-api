@@ -102,6 +102,17 @@ exports.finduserPhotos = (req, res) => {
     })
 }
 
+// count users photo
+exports.countUserPhotos = (req, res) => {
+    Photo.count({userId: req.params.userId}, function (err, count) {
+        res.status(200).send({ 
+            success: true,
+            data: count,
+            message: 'success',
+        });
+    });
+}
+
 // Get a single photo
 exports.findOne = (req, res) => {
     Photo.findById(req.params.photoId)
