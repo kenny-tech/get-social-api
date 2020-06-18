@@ -65,7 +65,7 @@ exports.create = (req, res) => {
 
 // Get all photos
 exports.findAll = (req, res) => {
-    Photo.find()
+    Photo.find().sort({ createdAt: -1 })
     .then(photos => {
         res.status(200).send(photos);
     })
