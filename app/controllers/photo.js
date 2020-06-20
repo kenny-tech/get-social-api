@@ -36,13 +36,16 @@ exports.create = (req, res) => {
             })
         }
         else {
-            console.log("Result: ", result);
+            // console.log("Result: ", result);
             // save image to db and return response
             const photo = new Photo({
                 user: req.body.user,
                 userId: req.body.userId,
                 picture: result.secure_url,
             });
+
+            // Delete photo from images folder after uploading to the cloud
+            fs.unlinkSync(path);
         
             // save photo
             photo.save()
