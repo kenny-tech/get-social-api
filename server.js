@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
+require('dotenv').config()
 
 // configure database
 const dbConfig = require('./config/database.config.js');
@@ -36,7 +37,9 @@ app.get('/', (req, res) => {
 // require Photos routes
 require('./app/router')(app);
 
+const port = process.env.PORT || 3000;
+
 // listen for requests
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("Server is listening on port 3000");
 });
