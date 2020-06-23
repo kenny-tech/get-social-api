@@ -37,9 +37,9 @@ app.get('/', (req, res) => {
 // require Photos routes
 require('./app/router')(app);
 
-const port = process.env.PORT || 3000;
+const port_number = process.env.PORT || 3000;
 
 // listen for requests
-app.listen(port, () => {
+app.listen(port_number, () => {
     console.log("Server is listening on port 3000");
 });
